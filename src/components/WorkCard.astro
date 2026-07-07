@@ -8,6 +8,7 @@ interface Props {
 const { item } = Astro.props;
 
 const statusStyles: Record<string, string> = {
+  Published: 'text-accent border-accent/40 bg-accent/10',
   'Working paper': 'text-navy border-navy/30 bg-navy/10',
   Complete: 'text-emerald-300 border-emerald-300/30 bg-emerald-300/10',
   'In progress': 'text-amber-300 border-amber-300/30 bg-amber-300/10',

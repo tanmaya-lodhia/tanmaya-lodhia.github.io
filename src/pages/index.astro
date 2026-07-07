@@ -6,7 +6,7 @@ const highlights = [
   {
     title: 'Research',
     href: '/research',
-    stat: `${papers.filter((p) => p.status === 'Working paper').length} working papers`,
+    stat: `${papers.filter((p) => p.status === 'Working paper' || p.status === 'Published').length} research papers`,
     text: 'Risk metrics, market impact, and the volatility risk premium, written to SSRN standards with full replication code.',
   },
   {
@@ -54,7 +54,7 @@ const highlights = [
 
   <!-- Stats strip -->
   <section class="border-t border-line">
-    <div class="mx-auto grid max-w-5xl grid-cols-2 gap-px overflow-hidden px-6 py-10 sm:grid-cols-4">
+    <div class="mx-auto grid max-w-5xl grid-cols-1 gap-px overflow-hidden px-6 py-10 sm:grid-cols-3">
       {site.stats.map((stat) => (
         <div class="px-4 py-3 text-center">
           <p class="font-serif text-4xl font-semibold text-accent">{stat.value}</p>
@@ -89,7 +89,7 @@ const highlights = [
           I study mathematics and economics at the University of Nottingham and spend most of my
           time outside lectures doing independent research: replicating published papers, testing
           whether claimed market anomalies survive honest statistics, and writing the results up
-          as working papers. Three are complete; more are underway.
+          as papers. Three are complete, one of them published; more are underway.
         </p>
         <p class="mt-4 leading-relaxed text-ink-soft">
           It started with a simple question: how much of what gets published about markets is

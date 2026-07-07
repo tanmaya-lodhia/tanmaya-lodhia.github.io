@@ -7,10 +7,30 @@ import { papers } from '../data/content';
 <Layout title="Research · Tanmaya Lodhia" description="Independent working papers on markets, risk, and asset pricing by Tanmaya Lodhia.">
   <div class="mx-auto max-w-5xl px-6 py-16">
     <h1 class="mb-2 font-serif text-4xl font-semibold text-ink">Research</h1>
-    <p class="mb-12 max-w-2xl text-ink-soft">
-      Independent working papers and studies, written to SSRN standards with full replication
-      code. Every result is presented with its limitations first.
+    <p class="mb-10 max-w-2xl text-ink-soft">
+      Independent papers and studies, written to SSRN standards with full replication code.
+      Every result is presented with its limitations first.
     </p>
+
+    <div class="mb-14 rounded-xl border border-line bg-card-deep p-8">
+      <p class="text-xs font-medium uppercase tracking-[0.25em] text-accent">Research philosophy</p>
+      <div class="mt-4 max-w-2xl space-y-4 leading-relaxed text-ink-soft">
+        <p>
+          Most empirical finance runs on trust: trust that the data was clean, the backtest
+          honest, the result not the survivor of a hundred silent attempts. I build tools
+          because trust is not a method. If a paper claims an effect, I want to replicate it
+          from raw data. If a metric is supposed to protect a portfolio, I want to watch it fail
+          before I believe where it holds. If a strategy looks profitable, the interesting
+          question is which correction kills it.
+        </p>
+        <p>
+          That is why the order book engine exists, why every paper ships with replication code,
+          and why one project below is on hold because it failed its own placebo test. A
+          regression you ran once is an anecdote; a pipeline anyone can rerun is a claim. I
+          would rather publish a true nothing than a fragile something.
+        </p>
+      </div>
+    </div>
     <div class="space-y-10">
       {papers.map((paper) => <WorkCard item={paper} />)}
     </div>

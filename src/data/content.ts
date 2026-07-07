@@ -5,10 +5,9 @@ export const site = {
   blurb:
     "I write independent research on market microstructure, volatility, and asset pricing, and build the tools to test the ideas properly: from replication studies to a C++ order book engine.",
   stats: [
-    { value: "3", label: "working papers" },
     { value: "99.9%", label: "order book reconstruction accuracy" },
     { value: "6.8M", label: "events/sec C++ engine throughput" },
-    { value: "1", label: "strategy taken from paper to live paper-trading" },
+    { value: "3", label: "research papers, one published" },
   ],
   email: "tanmaya.lodhia@gmail.com",
   github: "https://github.com/tanmaya-lodhia",
@@ -17,7 +16,7 @@ export const site = {
   headshot: "/images/headshot.jpg",
 };
 
-export type Status = "Working paper" | "In progress" | "On hold" | "Complete";
+export type Status = "Published" | "Working paper" | "In progress" | "On hold" | "Complete";
 
 export type Card = {
   title: string;
@@ -72,7 +71,7 @@ export const papers: Card[] = [
   {
     title:
       "Coherent Drawdown-Adjusted Performance: Replication and Extension Across International Equity Markets",
-    status: "Working paper",
+    status: "Published",
     why: "Drawdown rules govern real allocation and manager-firing decisions. A metric that scores the COVID crash as an acceptable period is a dangerous metric.",
     summary:
       "The standard drawdown-adjusted return metric can rank a market crash as a mediocre but acceptable period. This paper replicates the flaw, verifies the proposed fix, and extends both internationally.",
