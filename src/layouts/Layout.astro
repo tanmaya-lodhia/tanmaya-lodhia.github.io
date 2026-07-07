@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+import { site } from '../data/content';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Tanmaya Lodhia',
+  description = 'Economics undergraduate at the University of Nottingham. Independent research on markets, risk, and asset pricing.',
+} = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/research', label: 'Research' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/pitches', label: 'Pitches & Models' },
+  { href: '/blog', label: 'Blog' },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex min-h-screen flex-col bg-paper text-ink antialiased">
+    <nav class="sticky top-0 z-20 border-b border-line bg-paper/90 backdrop-blur">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <a href="/" class="font-serif text-lg font-semibold tracking-tight text-ink">Tanmaya Lodhia</a>
+        <div class="flex flex-wrap gap-4 text-sm font-medium sm:gap-7">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class={`transition hover:text-accent ${isActive(link.href) ? 'text-accent' : 'text-ink-soft'}`}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-line bg-card-deep">
+      <div class="mx-auto max-w-5xl px-6 py-12">
+        <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+          <div>
+            <p class="font-serif text-xl font-semibold text-ink">Get in touch</p>
+            <p class="mt-1 text-sm text-ink-soft">The fastest way to reach me is email.</p>
+          </div>
+          <div class="flex flex-wrap gap-3 text-sm font-medium">
+            <a href={`mailto:${site.email}`} class="rounded-md bg-accent px-4 py-2 text-paper transition hover:bg-accent-soft">Email</a>
+            <a href={site.linkedin} class="rounded-md border border-line px-4 py-2 text-ink-soft transition hover:border-accent hover:text-accent">LinkedIn</a>
+            <a href={site.github} class="rounded-md border border-line px-4 py-2 text-ink-soft transition hover:border-accent hover:text-accent">GitHub</a>
+            <a href={site.ssrn} class="rounded-md border border-line px-4 py-2 text-ink-soft transition hover:border-accent hover:text-accent">SSRN</a>
+          </div>
+        </div>
+        <p class="mt-10 text-xs text-ink-faint">&copy; {new Date().getFullYear()} Tanmaya Lodhia</p>
+      </div>
+    </footer>
+  </body>
+</html>

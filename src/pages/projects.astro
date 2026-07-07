@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WorkCard from '../components/WorkCard.astro';
+import { projects } from '../data/content';
+---
+
+<Layout title="Projects · Tanmaya Lodhia" description="Engineering and quantitative projects by Tanmaya Lodhia: C++ order book engine, systematic strategies, derivatives pricing.">
+  <div class="mx-auto max-w-5xl px-6 py-16">
+    <h1 class="mb-2 font-serif text-4xl font-semibold text-ink">Projects</h1>
+    <p class="mb-12 max-w-2xl text-ink-soft">
+      Building the infrastructure behind the research, not just using it: exchange systems,
+      systematic strategies, and pricing models.
+    </p>
+    <div class="space-y-10">
+      {projects.map((project) => <WorkCard item={project} />)}
+    </div>
+  </div>
+</Layout>

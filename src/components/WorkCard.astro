@@ -1,0 +1,53 @@
+---
+import type { Card } from '../data/content';
+
+interface Props {
+  item: Card;
+}
+
+const { item } = Astro.props;
+
+const statusStyles: Record<string, string> = {
+  'Working paper': 'text-navy border-navy/30 bg-navy/10',
+  Complete: 'text-emerald-300 border-emerald-300/30 bg-emerald-300/10',
+  'In progress': 'text-amber-300 border-amber-300/30 bg-amber-300/10',
+  'On hold': 'text-ink-faint border-line bg-ink/5',
+};
+---
+
+<article class="overflow-hidden rounded-xl border border-line bg-card shadow-sm transition hover:border-accent/40">
+  <div class={`grid ${item.image ? 'md:grid-cols-5' : ''}`}>
+    <div class={`p-7 ${item.image ? 'md:col-span-3' : ''}`}>
+      <div class="mb-3 flex flex-wrap items-center gap-2">
+        {item.status && (
+          <span class={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusStyles[item.status]}`}>
+            {item.status}
+          </span>
+        )}
+        {item.tags.map((tag) => (
+          <span class="rounded-full border border-line px-2.5 py-0.5 text-xs text-ink-faint">{tag}</span>
+        ))}
+      </div>
+      <h3 class="font-serif text-2xl font-semibold leading-snug text-ink">{item.title}</h3>
+      <p class="mt-3 leading-relaxed text-ink-soft">{item.summary}</p>
+      <ul class="mt-4 space-y-2">
+        {item.details.map((d) => (
+          <li class="flex gap-2.5 text-sm leading-relaxed text-ink-soft">
+            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent"></span>
+            <span>{d}</span>
+          </li>
+        ))}
+      </ul>
+      {item.link && (
+        <a href={item.link.href} class="mt-5 inline-block text-sm font-medium text-accent transition hover:text-accent-soft">
+          {item.link.label} &rarr;
+        </a>
+      )}
+    </div>
+    {item.image && (
+      <div class="flex items-center justify-center border-t border-line bg-white/95 p-5 md:col-span-2 md:border-l md:border-t-0">
+        <img src={item.image.src} alt={item.image.alt} class="max-h-72 w-full rounded object-contain" loading="lazy" />
+      </div>
+    )}
+  </div>
+</article>

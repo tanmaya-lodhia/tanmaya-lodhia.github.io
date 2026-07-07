@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site, papers, projects, pitches, skills } from '../data/content';
+
+const highlights = [
+  {
+    title: 'Research',
+    href: '/research',
+    stat: `${papers.filter((p) => p.status === 'Working paper').length} working papers`,
+    text: 'Risk metrics, market impact, and the volatility risk premium, written to SSRN standards with full replication code.',
+  },
+  {
+    title: 'Projects',
+    href: '/projects',
+    stat: `${projects.length} builds`,
+    text: 'A C++23 order book engine, systematic strategies, and derivatives pricing models.',
+  },
+  {
+    title: 'Pitches & Models',
+    href: '/pitches',
+    stat: `${pitches.length} pitches & cases`,
+    text: 'Stock pitches, DCF models, and M&A valuation work across power, steel, consumer, and technology.',
+  },
+];
+---
+
+<Layout>
+  <!-- Hero -->
+  <header class="mx-auto max-w-5xl px-6 pb-20 pt-16 sm:pt-24">
+    <div class="flex flex-col-reverse items-start gap-10 sm:flex-row sm:items-center sm:justify-between">
+      <div class="max-w-xl">
+        <p class="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-accent">{site.tagline}</p>
+        <h1 class="font-serif text-5xl font-semibold leading-tight tracking-tight text-ink sm:text-6xl">
+          {site.name}
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-ink-soft">
+          {site.blurb}
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/research" class="rounded-md bg-accent px-5 py-2.5 text-sm font-medium text-paper transition hover:bg-accent-soft">Read my research</a>
+          <a href={site.ssrn} class="rounded-md border border-line px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent hover:text-accent">SSRN</a>
+          <a href={site.github} class="rounded-md border border-line px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent hover:text-accent">GitHub</a>
+          <a href={site.linkedin} class="rounded-md border border-line px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent hover:text-accent">LinkedIn</a>
+        </div>
+      </div>
+      <img
+        src={site.headshot}
+        alt="Portrait of Tanmaya Lodhia"
+        class="h-44 w-44 shrink-0 rounded-2xl border border-line object-cover object-top shadow-lg sm:h-56 sm:w-56"
+      />
+    </div>
+  </header>
+
+  <!-- Section highlights -->
+  <section class="border-t border-line bg-card-deep">
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <div class="grid gap-6 sm:grid-cols-3">
+        {highlights.map((h) => (
+          <a href={h.href} class="group rounded-xl border border-line bg-card p-6 transition hover:border-accent/50">
+            <p class="text-xs font-medium uppercase tracking-widest text-accent">{h.stat}</p>
+            <h2 class="mt-2 font-serif text-2xl font-semibold text-ink">{h.title}</h2>
+            <p class="mt-3 text-sm leading-relaxed text-ink-soft">{h.text}</p>
+            <p class="mt-4 text-sm font-medium text-accent transition group-hover:text-accent-soft">Explore &rarr;</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="mb-6 font-serif text-3xl font-semibold text-ink">About</h2>
+    <div class="grid gap-10 sm:grid-cols-3">
+      <div class="sm:col-span-2">
+        <p class="leading-relaxed text-ink-soft">
+          I study economics at the University of Nottingham and spend most of my time outside
+          lectures doing independent research: replicating published papers, testing whether
+          claimed market anomalies survive honest statistics, and writing the results up as
+          working papers. Three are complete; more are underway.
+        </p>
+        <p class="mt-4 leading-relaxed text-ink-soft">
+          The common thread is scepticism applied carefully. Whether the subject is a risk
+          metric, an options premium, a company valuation, or a trading rule an algorithm claims
+          to have discovered, the question is the same: does the result survive when you attack
+          it properly? That habit of mind, and the ability to communicate what survives and what
+          doesn't, is what I bring to any analytical role.
+        </p>
+      </div>
+      <div class="space-y-4 text-sm">
+        <div class="rounded-lg border border-line bg-card p-4">
+          <p class="font-semibold text-ink">Research to production</p>
+          <p class="mt-1 text-ink-soft">One paper extended into a live, automated paper-trading strategy</p>
+        </div>
+        <div class="rounded-lg border border-line bg-card p-4">
+          <p class="font-semibold text-ink">Beyond Python</p>
+          <p class="mt-1 text-ink-soft">Exchange-grade order book engine written in C++23</p>
+        </div>
+        <div class="rounded-lg border border-line bg-card p-4">
+          <p class="font-semibold text-ink">Both sides of finance</p>
+          <p class="mt-1 text-ink-soft">Quantitative research alongside stock pitches, DCF, and M&amp;A modelling</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="border-t border-line bg-card-deep">
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <h2 class="mb-10 font-serif text-3xl font-semibold text-ink">Skills</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {skills.map((group) => (
+          <div class="rounded-xl border border-line bg-card p-6">
+            <h3 class="mb-4 font-serif text-lg font-semibold text-ink">{group.group}</h3>
+            <ul class="space-y-2.5">
+              {group.items.map((item) => (
+                <li class="flex gap-2.5 text-sm leading-relaxed text-ink-soft">
+                  <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

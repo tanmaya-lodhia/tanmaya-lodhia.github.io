@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WorkCard from '../components/WorkCard.astro';
+import { pitches } from '../data/content';
+---
+
+<Layout title="Pitches & Models · Tanmaya Lodhia" description="Stock pitches, DCF models, and M&A valuation work by Tanmaya Lodhia.">
+  <div class="mx-auto max-w-5xl px-6 py-16">
+    <h1 class="mb-2 font-serif text-4xl font-semibold text-ink">Pitches &amp; Models</h1>
+    <p class="mb-12 max-w-2xl text-ink-soft">
+      Stock pitches, DCF models, and M&amp;A valuation cases across power, steel, consumer, and
+      technology. Full decks and models available on request.
+    </p>
+    <div class="space-y-10">
+      {pitches.map((pitch) => <WorkCard item={pitch} />)}
+    </div>
+  </div>
+</Layout>

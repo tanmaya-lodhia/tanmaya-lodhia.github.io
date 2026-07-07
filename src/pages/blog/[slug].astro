@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const readingTime = Math.max(1, Math.round((post.body ?? '').split(/\s+/).length / 200));
+---
+
+<Layout title={`${post.data.title} · Tanmaya Lodhia`} description={post.data.description}>
+  <article class="mx-auto max-w-3xl px-6 py-16">
+    <a href="/blog" class="text-sm font-medium text-accent transition hover:text-accent-soft">&larr; All posts</a>
+    <div class="mt-10 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium uppercase tracking-widest text-ink-faint">
+      <span>{fmt(post.data.date)}</span>
+      <span class="text-accent">&middot;</span>
+      <span>{readingTime} min read</span>
+    </div>
+    <h1 class="mt-4 font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">{post.data.title}</h1>
+    <p class="mt-4 font-serif text-xl italic leading-relaxed text-ink-soft">{post.data.description}</p>
+    <div class="mt-8 h-px w-24 bg-accent"></div>
+    <div class="post-body mt-10">
+      <Content />
+    </div>
+    <div class="mt-14 border-t border-line pt-8">
+      <a href="/blog" class="text-sm font-medium text-accent transition hover:text-accent-soft">&larr; All posts</a>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .post-body :global(p) {
+    margin-bottom: 1.25rem;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--color-ink-soft);
+  }
+  .post-body :global(> p:first-child)::first-letter {
+    font-family: var(--font-serif);
+    font-size: 3.4em;
+    font-weight: 600;
+    float: left;
+    line-height: 0.85;
+    padding-right: 0.12em;
+    color: var(--color-accent);
+  }
+  .post-body :global(h2) {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin: 2rem 0 0.75rem;
+  }
+  .post-body :global(h3) {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin: 1.5rem 0 0.5rem;
+  }
+  .post-body :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    margin: 0 0 1.25rem 1.25rem;
+    color: var(--color-ink-soft);
+    line-height: 1.75;
+  }
+  .post-body :global(ul) {
+    list-style: disc;
+  }
+  .post-body :global(ol) {
+    list-style: decimal;
+  }
+  .post-body :global(blockquote) {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 1rem;
+    font-style: italic;
+    margin-bottom: 1.25rem;
+    color: var(--color-ink-soft);
+  }
+  .post-body :global(code) {
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    padding: 0.1rem 0.35rem;
+    font-size: 0.875em;
+  }
+  .post-body :global(pre) {
+    background: var(--color-card-deep);
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+  }
+  .post-body :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .post-body :global(img) {
+    border-radius: 8px;
+    margin: 1.5rem 0;
+  }
+</style>
