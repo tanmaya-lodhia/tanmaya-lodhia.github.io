@@ -1,8 +1,15 @@
 export const site = {
   name: "Tanmaya Lodhia",
-  tagline: "Economics · University of Nottingham",
+  role: "Independent Quantitative Research",
+  tagline: "Mathematics & Economics · University of Nottingham",
   blurb:
-    "Third-year economics undergraduate writing independent research on markets, risk, and asset pricing, and building the tools to test the ideas properly.",
+    "I write independent research on market microstructure, volatility, and asset pricing, and build the tools to test the ideas properly: from replication studies to a C++ order book engine.",
+  stats: [
+    { value: "3", label: "working papers" },
+    { value: "99.9%", label: "order book reconstruction accuracy" },
+    { value: "6.8M", label: "events/sec C++ engine throughput" },
+    { value: "1", label: "strategy taken from paper to live paper-trading" },
+  ],
   email: "tanmaya.lodhia@gmail.com",
   github: "https://github.com/tanmaya-lodhia",
   linkedin: "https://www.linkedin.com/in/tanmayalodhia",
@@ -15,6 +22,7 @@ export type Status = "Working paper" | "In progress" | "On hold" | "Complete";
 export type Card = {
   title: string;
   status?: Status;
+  why?: string;
   summary: string;
   details: string[];
   tags: string[];
@@ -27,6 +35,7 @@ export const papers: Card[] = [
     title:
       "Which Impact Models Survive Price Diffusivity? Stress-Testing the Structural Constraint of Bonart (2026) in Simulation and Public Data",
     status: "Working paper",
+    why: "Impact models sit inside every execution algorithm. A model that violates price diffusivity systematically mis-prices the cost of trading.",
     summary:
       "Every trade moves prices, yet prices behave like a random walk. This paper stress-tests which market impact models can actually satisfy that constraint, in simulation and on real data.",
     details: [
@@ -45,6 +54,7 @@ export const papers: Card[] = [
     title:
       "Harvestable Premium or Crash Compensation? The Crypto Variance Risk Premium in Bitcoin and Ethereum",
     status: "Working paper",
+    why: "Short-volatility strategies earn steady carry until they blow up. Knowing when the premium is genuine compensation and when it is crash bait is the whole game.",
     summary:
       "Option-implied volatility in crypto persistently exceeds what is subsequently realised. Is the gap free money for volatility sellers, or fair payment for carrying crash risk?",
     details: [
@@ -63,6 +73,7 @@ export const papers: Card[] = [
     title:
       "Coherent Drawdown-Adjusted Performance: Replication and Extension Across International Equity Markets",
     status: "Working paper",
+    why: "Drawdown rules govern real allocation and manager-firing decisions. A metric that scores the COVID crash as an acceptable period is a dangerous metric.",
     summary:
       "The standard drawdown-adjusted return metric can rank a market crash as a mediocre but acceptable period. This paper replicates the flaw, verifies the proposed fix, and extends both internationally.",
     details: [
@@ -79,6 +90,7 @@ export const papers: Card[] = [
   {
     title: "Bayesian Ball-by-Ball Win Probability Modelling in T20 Cricket",
     status: "In progress",
+    why: "A forecast is only useful if its probabilities mean what they say. In-play sports markets price these probabilities in real time, so calibration is directly testable.",
     summary:
       "A fully probabilistic in-match win probability model for T20 cricket, built from 7,000+ matches of ball-by-ball data, with calibration and honest uncertainty as the headline objectives rather than leaderboard accuracy.",
     details: [
@@ -94,6 +106,7 @@ export const papers: Card[] = [
   {
     title: "How Much Automated Alpha Discovery Survives Multiple-Testing Correction?",
     status: "In progress",
+    why: "LLM-driven alpha discovery is booming. Without multiple-testing discipline, most of what these systems find is noise dressed up as signal.",
     summary:
       "When an automated loop, whether random search or an LLM reading its own backtest results, 'discovers' trading rules, how much survives a statistically honest audit? The audit is the paper.",
     details: [
@@ -105,6 +118,7 @@ export const papers: Card[] = [
   {
     title: "Expectation Formation in In-Play Prediction Markets",
     status: "On hold",
+    why: "Whether prices under- or over-react to news is a central question in behavioural finance, and most tests rely on messy survey data. Prediction markets offer a cleaner lab.",
     summary:
       "Do live prediction-market prices over- or under-react to news? Uses the half-time score in football as a clean, timestamped information shock across roughly 400 matches in seven leagues.",
     details: [
@@ -119,12 +133,13 @@ export const projects: Card[] = [
   {
     title: "Limit Order Book Engine",
     status: "Complete",
+    why: "The order book is where prices actually form. Building one from raw exchange messages, rather than using a library, is the difference between knowing about microstructure and knowing it.",
     summary:
-      "A from-scratch, full-depth limit order book reconstruction and matching engine in C++23: the data structure at the heart of every modern exchange.",
+      "A from-scratch, full-depth limit order book reconstruction and matching engine in C++23, processing 6.8 million events per second with 99.9% top-of-book reconstruction accuracy.",
     details: [
       "Reconstructs the order book from raw NASDAQ (LOBSTER) message data with 99.9% agreement against the official reference, validated by a 50,000-step differential fuzz test between two independent implementations.",
-      "Includes a price-time-priority matching engine, an optimised flat-array engine (1.5x faster than the baseline), and microstructure analytics that replicate the square-root law of market impact on real reconstructed books.",
-      "37 automated test suites; built with CMake and Ninja.",
+      "Recovers the square-root law of market impact on real reconstructed books: fitted exponent 0.62 with R-squared 0.97 across 553,000 synthetic metaorders.",
+      "Includes a price-time-priority matching engine and an optimised flat-array engine 1.5x faster than the baseline; 37 automated test suites, built with CMake and Ninja.",
     ],
     tags: ["C++23", "Exchange systems", "Market microstructure"],
     link: { label: "View on GitHub", href: "https://github.com/tanmaya-lodhia/lob-engine" },
@@ -132,6 +147,7 @@ export const projects: Card[] = [
   {
     title: "Regime-Conditional Mean Reversion",
     status: "In progress",
+    why: "Most published anomalies are averages over very different market conditions. Conditioning on regime asks the sharper question: when does this edge actually exist?",
     summary:
       "Combines a hidden Markov model of market regimes with a systematic short strategy on small-cap stocks that spike intraday, testing whether the edge only exists in certain market states.",
     details: [
@@ -148,6 +164,7 @@ export const projects: Card[] = [
   {
     title: "Convertible Bond Monte Carlo: Shopify",
     status: "Complete",
+    why: "Convertible pricing is where equity analysis meets derivatives: the bond's value depends on a probability distribution, not a point forecast.",
     summary:
       "Monte Carlo simulation of Shopify's $920 million convertible bond, estimating the probability the conversion option finishes in the money.",
     details: [

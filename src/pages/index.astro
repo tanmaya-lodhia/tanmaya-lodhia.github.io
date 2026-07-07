@@ -29,10 +29,11 @@ const highlights = [
   <header class="mx-auto max-w-5xl px-6 pb-20 pt-16 sm:pt-24">
     <div class="flex flex-col-reverse items-start gap-10 sm:flex-row sm:items-center sm:justify-between">
       <div class="max-w-xl">
-        <p class="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-accent">{site.tagline}</p>
+        <p class="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-accent">{site.role}</p>
         <h1 class="font-serif text-5xl font-semibold leading-tight tracking-tight text-ink sm:text-6xl">
           {site.name}
         </h1>
+        <p class="mt-3 text-sm font-medium uppercase tracking-widest text-ink-faint">{site.tagline}</p>
         <p class="mt-6 text-lg leading-relaxed text-ink-soft">
           {site.blurb}
         </p>
@@ -50,6 +51,18 @@ const highlights = [
       />
     </div>
   </header>
+
+  <!-- Stats strip -->
+  <section class="border-t border-line">
+    <div class="mx-auto grid max-w-5xl grid-cols-2 gap-px overflow-hidden px-6 py-10 sm:grid-cols-4">
+      {site.stats.map((stat) => (
+        <div class="px-4 py-3 text-center">
+          <p class="font-serif text-4xl font-semibold text-accent">{stat.value}</p>
+          <p class="mx-auto mt-2 max-w-[12rem] text-xs leading-relaxed text-ink-soft">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
 
   <!-- Section highlights -->
   <section class="border-t border-line bg-card-deep">
@@ -73,10 +86,17 @@ const highlights = [
     <div class="grid gap-10 sm:grid-cols-3">
       <div class="sm:col-span-2">
         <p class="leading-relaxed text-ink-soft">
-          I study economics at the University of Nottingham and spend most of my time outside
-          lectures doing independent research: replicating published papers, testing whether
-          claimed market anomalies survive honest statistics, and writing the results up as
-          working papers. Three are complete; more are underway.
+          I study mathematics and economics at the University of Nottingham and spend most of my
+          time outside lectures doing independent research: replicating published papers, testing
+          whether claimed market anomalies survive honest statistics, and writing the results up
+          as working papers. Three are complete; more are underway.
+        </p>
+        <p class="mt-4 leading-relaxed text-ink-soft">
+          It started with a simple question: how much of what gets published about markets is
+          actually true? Free data and open-source tooling mean an undergraduate can now check,
+          so I do. The C++ order book engine exists because I wanted to know what happens inside
+          an exchange rather than take a library's word for it. Most of what I test does not
+          survive. The things that do are worth knowing about.
         </p>
         <p class="mt-4 leading-relaxed text-ink-soft">
           The common thread is scepticism applied carefully. Whether the subject is a risk
