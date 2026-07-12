@@ -1,7 +1,7 @@
 ---
 title: "Why I replicate papers before extending them"
 description: "Replication is unglamorous, which is exactly why it teaches you more than starting from scratch."
-date: 2026-07-07
+category: research-notes
 tags: ["research process", "replication"]
 ---
 

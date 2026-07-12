@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
+import { categoryMeta } from '../../data/blogCategories';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -13,17 +14,15 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const fmt = (d: Date) =>
-  d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-
 const readingTime = Math.max(1, Math.round((post.body ?? '').split(/\s+/).length / 200));
+const category = categoryMeta[post.data.category];
 ---
 
 <Layout title={`${post.data.title} · Tanmaya Lodhia`} description={post.data.description}>
   <article class="mx-auto max-w-3xl px-6 py-16">
     <a href="/blog" class="text-sm font-medium text-accent transition hover:text-accent-soft">&larr; All posts</a>
     <div class="mt-10 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium uppercase tracking-widest text-ink-faint">
-      <span>{fmt(post.data.date)}</span>
+      <a href={`/blog#${post.data.category}`} class="text-accent hover:text-accent-soft">{category.label}</a>
       <span class="text-accent">&middot;</span>
       <span>{readingTime} min read</span>
     </div>
