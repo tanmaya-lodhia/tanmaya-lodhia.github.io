@@ -38,16 +38,24 @@ const sections = categoryOrder
       ))}
     </nav>
 
-    {sections.map((s) => (
-      <section id={s.key} class="mt-16 scroll-mt-24">
-        <h2 class="font-serif text-2xl font-semibold text-ink">{s.meta.label}</h2>
-        <p class="mt-1 text-sm italic text-ink-faint">{s.meta.subtitle}</p>
+    {sections.map((s, i) => (
+      <section id={s.key} class="mt-20 scroll-mt-24">
+        <div class="flex items-baseline gap-5">
+          <span class="font-serif text-5xl font-semibold text-line select-none" aria-hidden="true">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <div>
+            <h2 class="font-serif text-3xl font-semibold text-ink">{s.meta.label}</h2>
+            <p class="mt-1 font-serif text-base italic text-accent-soft">{s.meta.subtitle}</p>
+          </div>
+        </div>
+        <div class="mt-5 h-px w-full bg-gradient-to-r from-accent/60 via-line to-transparent"></div>
 
-        <div class="mt-6 space-y-1">
+        <div class="mt-8 overflow-hidden rounded-xl border border-line bg-card-deep">
           {s.posts.map((post) => (
             <a
               href={`/blog/${post.id}`}
-              class="group relative block border-t border-line py-7 transition last:border-b hover:bg-card/60"
+              class="group relative block border-b border-line px-7 py-7 transition last:border-b-0 hover:bg-card"
             >
               <div class="flex items-baseline gap-6">
                 <div class="min-w-0 flex-1">

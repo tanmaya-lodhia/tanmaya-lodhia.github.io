@@ -7,19 +7,19 @@ const highlights = [
     title: 'Research',
     href: '/research',
     stat: `${papers.filter((p) => p.status === 'Working paper' || p.status === 'Published').length} research papers`,
-    text: 'Risk metrics, market impact, and the volatility risk premium, written to SSRN standards with full replication code.',
+    text: 'Independent research across asset pricing, market microstructure, derivatives, and financial economics.',
   },
   {
     title: 'Projects',
     href: '/projects',
     stat: `${projects.length} builds`,
-    text: 'A C++23 order book engine, systematic strategies, and derivatives pricing models.',
+    text: 'Research infrastructure, systematic strategies, pricing models, and market data engineering.',
   },
   {
     title: 'Pitches & Models',
     href: '/pitches',
     stat: `${pitches.length} pitches & cases`,
-    text: 'Stock pitches, DCF models, and M&A valuation work across power, steel, consumer, and technology.',
+    text: 'Equity research, DCF valuation, M&A analysis, and investment cases across multiple sectors.',
   },
 ];
 ---
@@ -54,7 +54,7 @@ const highlights = [
 
   <!-- Stats strip -->
   <section class="border-t border-line">
-    <div class="mx-auto grid max-w-5xl grid-cols-1 gap-px overflow-hidden px-6 py-10 sm:grid-cols-3">
+    <div class="mx-auto grid max-w-5xl grid-cols-2 gap-px overflow-hidden px-6 py-10 sm:grid-cols-4">
       {site.stats.map((stat) => (
         <div class="px-4 py-3 text-center">
           <p class="font-serif text-4xl font-semibold text-accent">{stat.value}</p>
@@ -86,10 +86,11 @@ const highlights = [
     <div class="grid gap-10 sm:grid-cols-3">
       <div class="sm:col-span-2">
         <p class="leading-relaxed text-ink-soft">
-          I study mathematics and economics at the University of Nottingham and spend most of my
-          time outside lectures doing independent research: replicating published papers, testing
-          whether claimed market anomalies survive honest statistics, and writing the results up
-          as papers. Three are complete, one of them published; more are underway.
+          I study mathematics and economics at the University of Nottingham, and outside lectures
+          I work on independent projects across quantitative finance, investment research, and
+          company valuation. Some become research papers: three are complete, one of them
+          published. Some become systematic strategies. Others become investment cases and
+          pitch decks.
         </p>
         <p class="mt-4 leading-relaxed text-ink-soft">
           It started with a simple question: how much of what gets published about markets is

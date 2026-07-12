@@ -1,13 +1,14 @@
 export const site = {
   name: "Tanmaya Lodhia",
-  role: "Independent Quantitative Research",
+  role: "Independent Financial Research",
   tagline: "Mathematics & Economics · University of Nottingham",
   blurb:
-    "I write independent research on market microstructure, volatility, and asset pricing, and build the tools to test the ideas properly: from replication studies to a C++ order book engine.",
+    "I investigate financial markets through quantitative research, investment analysis, and empirical modelling, building everything from exchange-grade C++ infrastructure and systematic strategies to valuation models and independent research papers.",
   stats: [
     { value: "99.9%", label: "order book reconstruction accuracy" },
     { value: "6.8M", label: "events/sec C++ engine throughput" },
     { value: "3", label: "research papers, one published" },
+    { value: "5", label: "investment cases and valuation models" },
   ],
   email: "tanmaya.lodhia@gmail.com",
   github: "https://github.com/tanmaya-lodhia",
@@ -235,7 +236,7 @@ export const pitches: Card[] = [
 
 export const skills = [
   {
-    group: "Research & analysis",
+    group: "Quantitative research",
     items: [
       "Econometrics (HAC inference, bootstrap, multiple-testing correction)",
       "Bayesian modelling (PyMC, hierarchical models)",
@@ -244,29 +245,30 @@ export const skills = [
     ],
   },
   {
-    group: "Finance & valuation",
+    group: "Investment research",
     items: [
       "DCF and three-statement modelling",
+      "Equity research & stock pitching",
       "M&A and deal analysis",
-      "Stock pitching & equity research",
-      "Derivatives pricing (Monte Carlo, Black-Scholes)",
+      "Industry and competitor analysis",
     ],
   },
   {
-    group: "Engineering",
+    group: "Markets",
+    items: [
+      "Derivatives pricing (Monte Carlo, Black-Scholes)",
+      "Volatility & variance risk premia",
+      "Market microstructure",
+      "Risk measurement & drawdown analytics",
+    ],
+  },
+  {
+    group: "Technical & communication",
     items: [
       "Python (pandas, NumPy, statsmodels)",
       "C++23 (low-latency data structures)",
-      "Data pipelines & market-data APIs",
       "Git, CMake, automated testing",
-    ],
-  },
-  {
-    group: "Communication",
-    items: [
-      "Academic writing (LaTeX, SSRN working papers)",
-      "Pitch decks & deal two-pagers",
-      "Translating technical results for non-specialist readers",
+      "Academic writing (LaTeX, SSRN) & pitch decks",
     ],
   },
 ];
