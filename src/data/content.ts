@@ -84,7 +84,7 @@ export const papers: Card[] = [
       src: "/images/drawdown-crisis.png",
       alt: "Crisis-period analysis of drawdown-adjusted performance metrics on SPY",
     },
-    link: { label: "Read the paper (PDF)", href: "/papers/coherent-drawdown-adjusted-performance.pdf" },
+    link: { label: "View on SSRN", href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6915958" },
   },
   {
     title: "Bayesian Ball-by-Ball Win Probability Modelling in T20 Cricket",
