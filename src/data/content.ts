@@ -101,6 +101,10 @@ export const papers: Card[] = [
       "Every result is validated against live data endpoints and frozen to an immutable dated snapshot before being cited, so the paper is reproducible even though the sources are live.",
     ],
     tags: ["ETFs", "Market structure", "Liquidity"],
+    image: {
+      src: "/images/etf-dislocation-schematic.svg",
+      alt: "Schematic of an ETF market price dislocating from its net asset value during a stress window",
+    },
     link: { label: "View on GitHub", href: "https://github.com/tanmaya-lodhia/etf-dislocations" },
   },
   {
