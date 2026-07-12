@@ -28,6 +28,7 @@ export type Card = {
   tags: string[];
   image?: { src: string; alt: string };
   link?: { label: string; href: string };
+  links?: { label: string; href: string }[];
 };
 
 export const papers: Card[] = [
@@ -88,6 +89,21 @@ export const papers: Card[] = [
     link: { label: "View on SSRN", href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6915958" },
   },
   {
+    title:
+      "When the Wrapper Cracks: ETF Dislocations, Arbitrage Frictions, and Liquidity Stress",
+    status: "In progress",
+    why: "ETFs promise to trade at fair value, but in a crisis the wrapper can crack. Whether the gap is fixable friction or genuine illiquidity decides whether the product is safe.",
+    summary:
+      "Studies whether the premiums and discounts ETFs open up during market stress are driven by ETF-side trading pressure, illiquidity in the underlying market, or arbitrage frictions in the creation-redemption mechanism.",
+    details: [
+      "Builds a reproducible pipeline over five liquid ETF sleeves (equity, credit, rates, international) with a full liquidity measure set: Amihud illiquidity, Corwin-Schultz and high-low spread proxies, abnormal volume, and stale-pricing flags.",
+      "Runs a pre-registered event study around stress windows plus a panel regression with entity and time fixed effects and two-way clustered standard errors, hardened by a placebo and robustness suite (117 checks).",
+      "Every result is validated against live data endpoints and frozen to an immutable dated snapshot before being cited, so the paper is reproducible even though the sources are live.",
+    ],
+    tags: ["ETFs", "Market structure", "Liquidity"],
+    link: { label: "View on GitHub", href: "https://github.com/tanmaya-lodhia/etf-dislocations" },
+  },
+  {
     title: "Bayesian Ball-by-Ball Win Probability Modelling in T20 Cricket",
     status: "In progress",
     why: "A forecast is only useful if its probabilities mean what they say. In-play sports markets price these probabilities in real time, so calibration is directly testable.",
@@ -143,6 +159,27 @@ export const projects: Card[] = [
     ],
     tags: ["C++23", "Exchange systems", "Market microstructure"],
     link: { label: "View on GitHub", href: "https://github.com/tanmaya-lodhia/lob-engine" },
+  },
+  {
+    title: "Multi-Asset Risk Lab: An Aladdin-Style Framework",
+    status: "Complete",
+    why: "Most student portfolios ask whether a strategy makes money. A risk desk asks a harder question: what does this portfolio actually contain, and what happens when the world breaks?",
+    summary:
+      "An open-source, institutional-style risk framework for an eleven-sleeve multi-asset ETF portfolio, covering the deliverables a risk desk cares about: risk decomposition, factor exposures, stress testing, construction, and attribution, with a live dashboard and a plain-English risk memo on top.",
+    details: [
+      "Euler risk decomposition (marginal and component contributions), parametric and historical VaR / expected shortfall, an observable six-factor model with Newey-West loadings, and drawdown attribution, every decomposition reconciling to machine precision.",
+      "Historical stress replay (GFC, euro crisis, COVID, the 2022 rate shock) and hypothetical factor scenarios, plus a walk-forward construction harness (minimum variance, risk parity, max Sharpe, CVaR) reported gross and net of a square-root cost model.",
+      "64 automated tests including an offline end-to-end run; an interactive Streamlit dashboard and a research note share the same modules, so the paper and the app never disagree.",
+    ],
+    tags: ["Portfolio risk", "Factor models", "Asset management"],
+    image: {
+      src: "/images/risklab-factor-betas.png",
+      alt: "Factor loadings heatmap across asset sleeves from the multi-asset risk framework",
+    },
+    links: [
+      { label: "Read the paper (PDF)", href: "/papers/multi-asset-risk-framework.pdf" },
+      { label: "View on GitHub", href: "https://github.com/tanmaya-lodhia/multi-asset-risk-lab" },
+    ],
   },
   {
     title: "Regime-Conditional Mean Reversion",

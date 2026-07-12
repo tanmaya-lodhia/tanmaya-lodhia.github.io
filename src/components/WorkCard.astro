@@ -7,6 +7,8 @@ interface Props {
 
 const { item } = Astro.props;
 
+const links = item.links ?? (item.link ? [item.link] : []);
+
 const statusStyles: Record<string, string> = {
   Published: 'text-accent border-accent/40 bg-accent/10',
   'Working paper': 'text-navy border-navy/30 bg-navy/10',
@@ -44,10 +46,14 @@ const statusStyles: Record<string, string> = {
           </li>
         ))}
       </ul>
-      {item.link && (
-        <a href={item.link.href} class="mt-5 inline-block text-sm font-medium text-accent transition hover:text-accent-soft">
-          {item.link.label} &rarr;
-        </a>
+      {links.length > 0 && (
+        <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+          {links.map((l) => (
+            <a href={l.href} class="text-sm font-medium text-accent transition hover:text-accent-soft">
+              {l.label} &rarr;
+            </a>
+          ))}
+        </div>
       )}
     </div>
     {item.image && (
